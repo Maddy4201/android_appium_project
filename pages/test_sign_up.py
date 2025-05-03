@@ -5,27 +5,20 @@ from appium.webdriver.common.appiumby import AppiumBy
 # Define capabilities using AppiumOptions
 from appium.options.android import UiAutomator2Options
 
-class SignUpUser:
+from pages.base_page import BasePage
+
+
+class SignUpUser(BasePage):
+
+	permission_popup_xpath = "//android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/btn_ok']"
+	location_popup_xpath = "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_foreground_only_button']"
+	allow_call_popup_xpath = "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_button']"
+	register_button_xpath = "//android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/btn_register']"
+	full_name_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/fullname']"
+	phone_no_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/phone']"
 
 	def __init__(self):
-
-		options = UiAutomator2Options()
-		options.platform_name = "Android"
-		options.device_name = "RZCXA1PTZJH"  # Your actual device name
-		options.app_package = "in.co.websites.websitesapp"
-		options.app_activity = "in.co.websites.websitesapp.main.MainActivity"
-		options.automation_name = "UiAutomator2"
-
-		# Start Appium session
-		self.driver = webdriver.Remote("http://localhost:4723", options=options)
-		self.driver.implicitly_wait(10)
-
-		self.permission_popup_xpath = "//android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/btn_ok']"
-		self.location_popup_xpath  = "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_foreground_only_button']"
-		self.allow_call_popup_xpath = "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_button']"
-		self.register_button_xpath = "//android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/btn_register']"
-		self.full_name_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/fullname']"
-		self.phone_no_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/phone']"
+		super().__init__()
 
 	def sign_up_flow(self):
 		# Wait for app to launch
