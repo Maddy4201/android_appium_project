@@ -1,0 +1,8 @@
+# Sign up flow X-paths
+
+sign_up_button = //android.widget.TextView[@resource-id="in.co.websites.websitesapp:id/btn_register"]
+full_name_field = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/fullname"]
+country_code_field = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/phone_code_spinner"]
+phone_no_filed = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/phone"]
+new_email_field = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/email_reg"]
+password_field = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/password"]
