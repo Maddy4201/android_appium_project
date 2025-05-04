@@ -4,7 +4,6 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 # Define capabilities using AppiumOptions
 from appium.options.android import UiAutomator2Options
-
 from pages.base_page import BasePage
 
 class UserLogin(BasePage):
@@ -77,19 +76,19 @@ class UserLogin(BasePage):
 		time.sleep(1)
 		self.driver.find_element(AppiumBy.XPATH, self.pay_with_card_button_xpath).click()
 
-if __name__ == "__main__":
-	user = UserLogin()
-	user.accept_permissions()
-	user.click_sign_in_button()
-	user.enter_user_email()
-	user.enter_user_password()
-	user.click_login_in_button()
-	user.ignore_post_login_popups()
-	user.click_menu_sidebar()
-	user.buy_subscription()
+# if __name__ == "__main__":
+# 	user = UserLogin()
+# 	# user.accept_permissions()
+# 	# user.click_sign_in_button()
+# 	# user.enter_user_email()
+# 	# user.enter_user_password()
+# 	# user.click_login_in_button()
+# 	# user.ignore_post_login_popups()
+# 	# user.click_menu_sidebar()
+# 	# user.buy_subscription()
 
 # Billing: //android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/material_drawer_name' and @text='Billing']
 
-	time.sleep(4)
-	print("App launched successfully!")
+	# time.sleep(4)
+	# print("App launched successfully!")
 
