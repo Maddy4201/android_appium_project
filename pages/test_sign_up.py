@@ -16,6 +16,10 @@ class SignUpUser(BasePage):
 	register_button_xpath = "//android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/btn_register']"
 	full_name_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/fullname']"
 	phone_no_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/phone']"
+	email_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/email_reg']"
+	password_field_xpath = "//android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/password']"
+	sign_up_button_xpath = "//android.widget.Button[@resource-id='in.co.websites.websitesapp:id/email_register_button']"
+
 
 	def __init__(self):
 		super().__init__()
@@ -30,6 +34,9 @@ class SignUpUser(BasePage):
 		self.driver.find_element(AppiumBy.XPATH, self.register_button_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.full_name_field_xpath).send_keys("Test User09")
 		self.driver.find_element(AppiumBy.XPATH, self.phone_no_field_xpath).send_keys("98767364")
+		self.driver.find_element(AppiumBy.XPATH, self.email_field_xpath).send_keys("testemail123@ymail.com")
+		self.driver.find_element(AppiumBy.XPATH, self.password_field_xpath).send_keys("Test@12345")
+		self.driver.find_element(AppiumBy.XPATH, self.sign_up_button_xpath).click()
 
 if __name__ == "__main__":
     test = SignUpUser()
@@ -37,15 +44,9 @@ if __name__ == "__main__":
 
 
 # # Sign up flow X-paths
-#
-# sign_up_button = //android.widget.TextView[@resource-id="in.co.websites.websitesapp:id/btn_register"]
-# full_name_field = //android.widget.EditText[@resource-id="in.co.websites.websitesapp:id/fullname"]
-# country_code_field = //android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/phone_code_spinner']
-# phone_no_filed = //android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/phone']
-# new_email_field = //android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/email_reg']
-# password_field = //android.widget.EditText[@resource-id='in.co.websites.websitesapp:id/password']
+
+
 # show_password_icon = "//android.widget.ImageButton[@content-desc='Show password']"
-# sign_up_button = //android.widget.Button[@resource-id="in.co.websites.websitesapp:id/email_register_button"]
 #
 # countrycode_search_field = "//android.widget.AutoCompleteTextView[@resource-id='in.co.websites.websitesapp:id/search_src_text']"
 # # enter only the country code number into the above field
