@@ -25,26 +25,37 @@ class UserLogin(BasePage):
 	subscribe_now_button_xpath = "//android.widget.TextView[@text='Subscribe Now']"
 	confirm_plan_xpath = "//android.widget.Button[@resource-id='in.co.websites.websitesapp:id/packageBtn']"
 	confirm_payment_button_xpath = "//android.widget.Button[@resource-id='in.co.websites.websitesapp:id/pay_button']"
-
+	pay_with_card_button_xpath = "//android.widget.TextView[ @ resource - id = 'in.co.websites.websitesapp:id/cardPayTextview']"
 
 	def __init__(self):
 		super().__init__()
 
 # Wait for app to launch
 # time.sleep(3)
-	def user_login(self):
+	def accept_permissions (self):
 		self.driver.find_element(AppiumBy.XPATH, self.initial_permission_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.location_access_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.allow_call_access_xpath).click()
+		time.sleep(1)
+
+	def click_sign_in_button(self):
 		self.driver.find_element(AppiumBy.XPATH, self.sign_in_button_xpath).click()
+
+	def enter_user_email(self):
 		self.driver.find_element(AppiumBy.XPATH, self.email_field_xpath).send_keys("miles604@yopmail.com")
+
+	def enter_user_password(self):
 		self.driver.find_element(AppiumBy.XPATH, self.password_field_xpath).send_keys("Testuser@17")
+
+	def click_login_in_button(self):
 		self.driver.find_element(AppiumBy.XPATH, self.login_button_xpath).click()
 		# allow after login
-		self.driver.find_element(AppiumBy.XPATH, self.allow_notification_after_login_xpath).click()
-		time.sleep(2)
+	def ignore_post_login_popups(self):
 		# ignore referral pop-up
 		try:
+			self.driver.find_element(AppiumBy.XPATH, self.allow_notification_after_login_xpath).click()
+			time.sleep(2)
+			self.driver.find_element(AppiumBy.XPATH, self.sale_offer_pop_up_xpath).click()
 			referral_pop = self.driver.find_element(AppiumBy.XPATH, self.referral_pop_up_xpath)
 			if referral_pop.is_displayed():
 				referral_pop.click()
@@ -53,33 +64,32 @@ class UserLogin(BasePage):
 		except:
 			print("Referral pop-up ignored")
 
-		time.sleep(2)
-		self.driver.find_element(AppiumBy.XPATH, self.sale_offer_pop_up_xpath).click()
-		# click on the sidebar
+	def click_menu_sidebar(self):
 		self.driver.find_element(AppiumBy.XPATH, self.menu_side_bar_xpath).click()
+
+	def buy_subscription(self):
 		# click on buy subscription
 		self.driver.find_element(AppiumBy.XPATH, self.buy_subscription_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.monthly_subscription_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.subscribe_now_button_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.confirm_plan_xpath).click()
 		self.driver.find_element(AppiumBy.XPATH, self.confirm_payment_button_xpath).click()
+		time.sleep(1)
+		self.driver.find_element(AppiumBy.XPATH, self.pay_with_card_button_xpath).click()
 
 if __name__ == "__main__":
 	user = UserLogin()
-	user.user_login()
-
-
-# sale_offer_pop_up = "//android.widget.ImageView[@resource-id='in.co.websites.websitesapp:id/close']"
-
-# subscribe now button = //android.widget.TextView[@text='Subscribe Now']
-# buy_subscription button = //android.widget.Button[@resource-id='in.co.websites.websitesapp:id/packageBtn']
-# pay_button = //android.widget.Button[@resource-id='in.co.websites.websitesapp:id/pay_button']
-# pay_with_card_button = //android.widget.TextView[@resource-id="in.co.websites.websitesapp:id/cardPayTextview"]
+	user.accept_permissions()
+	user.click_sign_in_button()
+	user.enter_user_email()
+	user.enter_user_password()
+	user.click_login_in_button()
+	user.ignore_post_login_popups()
+	user.click_menu_sidebar()
+	user.buy_subscription()
 
 # Billing: //android.widget.TextView[@resource-id='in.co.websites.websitesapp:id/material_drawer_name' and @text='Billing']
 
-time.sleep(4)
-print("App launched successfully!")
+	time.sleep(4)
+	print("App launched successfully!")
 
-# Close the driver
-# driver.quit()
